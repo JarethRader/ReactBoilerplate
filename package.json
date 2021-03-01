@@ -43,6 +43,8 @@
   "dependencies": {
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
+    "autoprefixer": "^10.2.4",
+    "postcss": "^8.2.6",
     "postcss-loader": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -50,7 +52,7 @@
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.0",
     "styled-icons": "^10.21.0",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^2.0.3",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.6"
   }
