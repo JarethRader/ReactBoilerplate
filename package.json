@@ -1,7 +1,7 @@
 {
-  "name": "learnup_client",
+  "name": "react_boilerplate",
   "version": "1.1.0",
-  "description": "Frontend for Learnup Centers Phonetic Learning Board",
+  "description": "React boilerplate template",
   "main": "src/index.ts",
   "scripts": {
     "start": "env NODE_ENV=development webpack serve --mode development --config webpack.dev.js",

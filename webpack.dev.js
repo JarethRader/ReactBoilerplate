@@ -24,17 +24,12 @@ module.exports = merge(common, {
     historyApiFallback: true,
     hot: true,
   },
-  resolve: {
-    alias: {
-      "config.json": path.resolve(__dirname, "src/config-dev.json"),
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, "assets/index.ejs"),
       filename: path.join(__dirname, "dist/index.html"),
-      title: "Aspen MOTD Editor",
+      title: "React Boilerplate",
       favicon: path.join(__dirname, "public/favicon.ico"),
       url: "https://localhost:3001",
       custom: {

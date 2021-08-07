@@ -59,17 +59,12 @@ module.exports = merge(common, {
     filename: "static/js/[name].[hash:8].js",
     chunkFilename: "static/js/[name].[hash:8].chunk.js",
   },
-  resolve: {
-    alias: {
-      "config.json": "src/config/config.json",
-    },
-  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, "assets/index.ejs"),
       filename: path.join(__dirname, "build/index.html"),
-      title: "Aspen MOTD Editor",
+      title: "React Boilerplate",
       favicon: path.join(__dirname, "public/favicon.ico"),
       url: "https://phonicsboard.learnupcenters.org/",
       custom: {
