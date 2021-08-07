@@ -1,28 +1,13 @@
+const path = require("path");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
-var ManifestPlugin = require("webpack-manifest-plugin");
 
 module.exports = merge(common, {
   mode: "development",
   devtool: "inline-source-map",
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-          "postcss-loader",
-        ],
-      },
-    ],
-  },
   output: {
     path: path.resolve(__dirname, "dist/"),
     publicPath: `./`,
@@ -33,20 +18,29 @@ module.exports = merge(common, {
   },
   devServer: {
     contentBase: path.join(__dirname, "public/"),
-    port: 3000,
-    publicPath: "http://localhost:3000/",
+    port: 3001,
+    publicPath: "http://localhost:3001/",
     hotOnly: true,
     historyApiFallback: true,
     hot: true,
   },
+  resolve: {
+    alias: {
+      "config.json": path.resolve(__dirname, "src/config-dev.json"),
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(__dirname, "assets/index_dev.ejs"),
+      template: path.join(__dirname, "assets/index.ejs"),
       filename: path.join(__dirname, "dist/index.html"),
-      title: "Phonetics Learning Board",
+      title: "Aspen MOTD Editor",
       favicon: path.join(__dirname, "public/favicon.ico"),
-      url: "https://localhost:3000",
+      url: "https://localhost:3001",
+      custom: {
+        react_lib: "https://unpkg.com/react@17/umd/react.development.js",
+        react_dom_lib: "https://unpkg.com/react-dom@17/umd/react-dom.development.js",
+      },
       minify: {
         removeComments: true,
         collapseWhitespace: true,

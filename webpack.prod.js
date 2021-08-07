@@ -1,14 +1,11 @@
+const path = require("path");
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const InlineChunkHtmlPlugin = require("react-dev-utils/InlineChunkHtmlPlugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const safePostCssParser = require("postcss-safe-parser");
-var ManifestPlugin = require("webpack-manifest-plugin");
 
 module.exports = merge(common, {
   mode: "production",
@@ -55,20 +52,6 @@ module.exports = merge(common, {
       name: (entrypoint) => `runtime-${entrypoint.name}`,
     },
   },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader",
-          "postcss-loader",
-        ],
-      },
-    ],
-  },
   output: {
     path: path.resolve(__dirname, "build/"),
     publicPath: "./",
@@ -76,14 +59,23 @@ module.exports = merge(common, {
     filename: "static/js/[name].[hash:8].js",
     chunkFilename: "static/js/[name].[hash:8].chunk.js",
   },
+  resolve: {
+    alias: {
+      "config.json": "src/config/config.json",
+    },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
       template: path.join(__dirname, "assets/index.ejs"),
       filename: path.join(__dirname, "build/index.html"),
-      title: "LearnUp Phonetics Board",
+      title: "Aspen MOTD Editor",
       favicon: path.join(__dirname, "public/favicon.ico"),
       url: "https://phonicsboard.learnupcenters.org/",
+      custom: {
+        react_lib: "https://unpkg.com/react@17/umd/react.production.js",
+        react_dom_lib: "https://unpkg.com/react-dom@17/umd/react-dom.production.js",
+      },
       minify: {
         removeComments: true,
         collapseWhitespace: true,
